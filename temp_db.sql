@@ -24,4 +24,3 @@ VALUES
 (6, 'Kiran Rao', NULL, 'M', 'Hyderabad', NULL);
 
 SELECT * FROM temp.customers WHERE Pincode is NULL;
-
