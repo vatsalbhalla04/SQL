@@ -26,4 +26,4 @@ VALUES
 SELECT * FROM temp.customers WHERE Pincode is NULL;
 
 -- Using wildcard search correctly
-SELECT * FROM temp.customers WHERE cname LIKE '%mi%';
+SELECT cname,City FROM temp.customers WHERE cname LIKE '%i%';
