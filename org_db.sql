@@ -100,4 +100,4 @@ SELECT * FROM workers WHERE department_name IN('manufacturing','logistics','HR',
 SELECT * FROM workers WHERE department_name NOT IN ('HR', 'logistics');
 
 -- "IS NULL" : 
-SELECT * FROM workers WHERE worker_id is NULL ; 
+SELECT * FROM workers WHERE worker_id is NULL 
