@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS temp;
 USE temp ; 
 
 CREATE TABLE customers (
-    id integer PRIMARY KEY , org
+    id integer PRIMARY KEY , 
     cname VARCHAR(225),
     Address VARCHAR(225),
     Gender CHAR(2),
@@ -24,3 +24,12 @@ VALUES
 (6, 'Kiran Rao', NULL, 'M', 'Hyderabad', NULL);
 
 SELECT * FROM temp.customers;
+
+CREATE TABLE order_details(
+    Order_id INT PRIMARY KEY, 
+    delivery_date DATE , 
+    cust_id INT ,
+    FOREIGN KEY(cust_id) references temp.customers(id) -- creating cust_Id as foreign key . 
+);
+
+SHOW TABLES;
