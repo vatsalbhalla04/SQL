@@ -33,3 +33,34 @@ CREATE TABLE order_details(
 );
 
 SHOW TABLES;
+
+-- DDL constraints : UNIQUE , DEFAULT , CHECK , PRIMARY KEY , FOREIGN KEY 
+    -- using "UNIQUE" constraint 
+    -- "CHECK" constraint : it is a consistency constraint . 
+
+CREATE TABLE account(
+    id INT PRIMARY KEY, 
+    username VARCHAR(25) UNIQUE NOT NULL,
+    balance INT, 
+    CONSTRAINT acc_balance_check CHECK (balance > 1000)
+    -- syntax to use CHECK constraint 
+);
+
+INSERT INTO account(id , username , balance)
+    VALUES (1 , 'A' , '1100'), 
+
+INSERT INTO account(id , username , balance)
+    VALUES  (2 , 'B' , '1200')
+SELECT * FROM temp.account;
+
+-- "DEFAULT" constraint : 
+DROP TABLE temp.account;
+CREATE table account(
+    id int PRIMARY key , 
+    username VARCHAR(255) UNIQUE, 
+    balance INT NOT NULL DEFAULT 0 
+)
+
+INSERT INTO account(id , username)
+    VALUES  (2 , 'B' )
+ 
