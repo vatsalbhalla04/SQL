@@ -34,7 +34,7 @@ CREATE TABLE order_details(
 
 SHOW TABLES;
 
--- DDL constraints : UNIQUE , DEFAULT , CHECK , PRIMARY KEY , FOREIGN KEY 
+-- DDL constraints : UNIQUE , DEFAULT , CHECK , PRIMARY KEY , FOREIGN KEY , ALTER .
     -- using "UNIQUE" constraint 
     -- "CHECK" constraint : it is a consistency constraint . 
 
@@ -64,3 +64,39 @@ CREATE table account(
 INSERT INTO account(id , username)
     VALUES  (2 , 'B' )
  
+-- an attribute can be both Primary key and foreign key in a table .  
+
+-- using ALTER operations like : ADD , MODIFY , CHANGE COLUMN, DROP COLUMN , RENAME 
+    
+    -- using ADD Keyword to add a column in account table :
+    ALTER TABLE account ADD interest FLOAT NOT NULL DEFAULT 0 
+
+    
+    -- using MODITY keyword to change the datatype of newly created column "interest" for table account : 
+    ALTER TABLE account MODIFY interest DOUBLE NOT NULL DEFAULT 0;
+    SELECT * FROM account;
+
+    -- To know whether the datatype is changed or not the command is : 
+    DESC account; -- describe keyword .
+
+    -- CHANGE COLUMN : to rename the cloumn :
+    -- Basic syntax : 
+    --  ALTER TABLE table_name old_col_name new_col_name + if you want to change the datatype also . 
+    ALTER TABLE account CHANGE COLUMN interest saving_int FLOAT NOT NULL DEFAULT 0
+
+    -- "DROP" column :  
+    ALTER TABLE account DROP COLUMN saving_int;
+
+    -- NOW TO CHANGE THE NAME OF THE TABLE : 
+    ALTER TABLE account RENAME TO account_details;
+
+    SHOW TABLES;
+
+
+-- DML Commands : INSERT , DELETE UPDATE , REPLACE: 
+    -- UPDATE query : 
+        UPDATE customers SET Address ="Mumbai" , Pincode = 123456 WHERE id = 1;
+
+        -- using update query to change the pincode attribute for all the names .w/o using the WHERE CLAUSE . 
+        UPDATE customers SET Pincode = 00000;
+    SELECT * FROM customers;
