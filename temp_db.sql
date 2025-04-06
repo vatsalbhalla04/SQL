@@ -32,6 +32,7 @@ CREATE TABLE order_details(
     FOREIGN KEY(cust_id) references temp.customers(id) -- creating cust_Id as foreign key . 
 );
 
+INSERT INTO order_details VALUES(1 , '2019-03-11',4)
 SHOW TABLES;
 
 -- DDL constraints : UNIQUE , DEFAULT , CHECK , PRIMARY KEY , FOREIGN KEY , ALTER .
@@ -93,10 +94,20 @@ INSERT INTO account(id , username)
     SHOW TABLES;
 
 
--- DML Commands : INSERT , DELETE UPDATE , REPLACE: 
+-- DML Commands : INSERT , DELETE UPDATE , REPLACE , ON DELETE CASCADE , ON DELETE NULL: 
     -- UPDATE query : 
         UPDATE customers SET Address ="Mumbai" , Pincode = 123456 WHERE id = 1;
 
         -- using update query to change the pincode attribute for all the names .w/o using the WHERE CLAUSE . 
-        UPDATE customers SET Pincode = 00000;
+        UPDATE customers SET Pincode = 11111;
     SELECT * FROM customers;
+
+    -- DELETE Query : 
+    DELETE FROM customers WHERE id = 1 ;
+    -- now deleting full table :  
+    DELETE FROM customers;
+
+    DROP TABLE IF EXISTS order_details;
+
+    -- SET FOREIGN_KEY_CHECKS = 0;
+    DROP TABLE IF EXISTS customers;
