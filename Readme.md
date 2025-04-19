@@ -2,7 +2,8 @@
 
     Why we use INSERT:
 
-        a)Data Integrity: INSERT ensures you're only adding new, unique records. If a record already exists (same primary key), it throws an error — this protects your data from being overwritten by mistake.
+        a)Data Integrity: INSERT ensures you're only adding new, unique records. If a record already exists (same primary key), it throws an error — this protects your data from being     
+                           overwritten by mistake.
 
         b)Better Performance: INSERT is faster because it doesn't check for existing records or delete anything behind the scenes like REPLACE does.
 
@@ -11,6 +12,7 @@
         d)Avoiding Unwanted NULLs: REPLACE deletes the old row and inserts the new one — so any unspecified fields can become NULL. INSERT avoids this.
 
 2)  Difference between INSERT , UPDATE , REPLACE:
+   
         INSERT adds a new row; fails if the primary key already exists.
 
         UPDATE modifies existing rows based on a condition; doesn’t add new rows.
