@@ -1,6 +1,7 @@
 1) Here's why INSERT is still very important even though REPLACE seems more flexible:
 
     Why we use INSERT:
+
         a)Data Integrity: INSERT ensures you're only adding new, unique records. If a record already exists (same primary key), it throws an error — this protects your data from being overwritten by mistake.
 
         b)Better Performance: INSERT is faster because it doesn't check for existing records or delete anything behind the scenes like REPLACE does.
