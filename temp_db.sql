@@ -126,7 +126,22 @@
 
         -- This query will insert a record with NULL values for all unspecified fields.
         REPLACE INTO customers (id) VALUES (2);
+
+        -- Using SELECT with the REPLACE statement to replace a record, setting unspecified fields to NULL:
+        REPLACE INTO customers (id,cname,city)
+                 SELECT id,cname,city
+                 FROM customers WHERE id = 3;
+
         SELECT * FROM customers;
+
+        -- Difference between INSERT , UPDATE , REPLACE:
+        -- INSERT adds a new row; fails if the primary key already exists.
+
+        -- UPDATE modifies existing rows based on a condition; doesn’t add new rows.
+
+        -- REPLACE deletes the old row (if primary key exists) and inserts a new one.
+
+        
         
 
 
