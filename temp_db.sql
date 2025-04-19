@@ -29,7 +29,11 @@ CREATE TABLE order_details (
     Order_id INT PRIMARY KEY, 
     delivery_date DATE, 
     cust_id INT,
-    FOREIGN KEY (cust_id) REFERENCES customers(id) ON DELETE CASCADE
+    FOREIGN KEY (cust_id) REFERENCES customers(id) ON DELETE SET NULL
+
+    -- ON DELETE CASCADE : is a foreign key constraint behavior in SQL that automatically deletes child table rows when the referenced row in the parent table is deleted.
+
+    --ON DELETE SET NULL : If a record in the parent table is deleted, set the foreign key in the child table to NULL.
 );
 
 -- Insert order records (customer can place multiple orders)
@@ -37,6 +41,7 @@ INSERT INTO order_details VALUES
 (1, '2019-03-11', 4),
 (2, '2019-03-12', 4);
 
+SELECT * FROM order_details;  
 -- Show existing tables
 SHOW TABLES;
 
@@ -69,38 +74,54 @@ INSERT INTO account (id, username) VALUES
 (2, 'B');
 
 -- ALTER operations
-ALTER TABLE account ADD interest FLOAT NOT NULL DEFAULT 0;
-ALTER TABLE account MODIFY interest DOUBLE NOT NULL DEFAULT 0;
-ALTER TABLE account CHANGE COLUMN interest saving_int FLOAT NOT NULL DEFAULT 0;
-ALTER TABLE account DROP COLUMN saving_int;
-ALTER TABLE account RENAME TO account_details;
+    ALTER TABLE account ADD interest FLOAT NOT NULL DEFAULT 0;
+
+    ALTER TABLE account MODIFY interest DOUBLE NOT NULL DEFAULT 0;
+
+  -- CHANGE COLUMN : to rename the cloumn :
+    -- Basic syntax : 
+    --  ALTER TABLE table_name old_col_name new_col_name + if you want to change the datatype also . 
+    ALTER TABLE account CHANGE COLUMN interest saving_int FLOAT NOT NULL DEFAULT 0;
+
+    -- "DROP" column :  
+    ALTER TABLE account DROP COLUMN saving_int;
+
+     -- NOW TO CHANGE THE NAME OF THE TABLE : 
+    ALTER TABLE account RENAME TO account_details;
 
 -- Check updated structure
 DESC account_details;
 SELECT * FROM account_details;
 SHOW TABLES;
 
--- DML operations
--- UPDATE specific customer
-UPDATE customers SET Address = 'Mumbai', Pincode = 123456 WHERE id = 1;
+-- DML operations : INSERT , DELETE UPDATE , REPLACE , ON DELETE CASCADE , ON DELETE NULL
+    -- UPDATE specific customer
+    UPDATE customers SET Address = 'Mumbai', Pincode = 123456 WHERE id = 1;
 
--- UPDATE all customer pincodes
-UPDATE customers SET Pincode = 11111;
+    -- UPDATE all customer pincodes
+    UPDATE customers SET Pincode = 11111;
 
--- DELETE specific customer
-DELETE FROM customers WHERE id = 4;
+    -- DELETE specific customer
+    DELETE FROM customers WHERE id = 125;
 
--- Drop all tables safely
-USE temp;
-SET FOREIGN_KEY_CHECKS = 0;
+    -- Drop all tables safely
+    USE temp;
+    SET FOREIGN_KEY_CHECKS = 0;
 
-DROP TABLE IF EXISTS order_details;
-DROP TABLE IF EXISTS customers;
-DROP TABLE IF EXISTS account_details;
-DROP TABLE IF EXISTS workers;
+    DROP TABLE IF EXISTS order_details;
+    DROP TABLE IF EXISTS customers;
+    DROP TABLE IF EXISTS account_details;
+    DROP TABLE IF EXISTS workers;
 
 -- Show tables after cleanup
 SHOW TABLES;
 
--- Verify cascading behavior (only works before dropping order_details)
-SELECT * FROM order_details;
+    -- Verify cascading behavior (only works before dropping order_details)
+    SELECT * FROM order_details;
+
+    -- Replace  : if the data is already present then it will replace . and if not present then it will insert . 
+    REPLACE INTO customers VALUES ('1','Vatsal','Ahmedabad','123456');
+    SELECT * FROM customers;
+
+    
+
