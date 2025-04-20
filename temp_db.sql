@@ -134,14 +134,8 @@
 
         SELECT * FROM customers;
 
-        -- Difference between INSERT , UPDATE , REPLACE:
-        -- INSERT adds a new row; fails if the primary key already exists.
+    
 
-        -- UPDATE modifies existing rows based on a condition; doesn’t add new rows.
-
-        -- REPLACE deletes the old row (if primary key exists) and inserts a new one.
-
-        
         
 
 
