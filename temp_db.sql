@@ -21,7 +21,7 @@
     (5, 'Arjun Das', '45 Sector 5', 'M', 'Delhi', 110085),
     (6, 'Kiran Rao', NULL, 'M', 'Hyderabad', NULL);
 
-    -- View customer data
+    -- View customer data using select query:
     SELECT * FROM customers;
 
     -- Create order_details table with FK constraint
