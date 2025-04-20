@@ -71,6 +71,7 @@ SELECT * FROM project;
          -- employee is the left table and project is the right table.
         SELECT e.id , e.fname , e.lname , p.project_id , p.name from employee as e 
         INNER JOIN project as p ON e.id = p.empID; 
+         
 
         --b) Now using the * for selecting all the col's from both the employee and project table:
         SELECT * FROM employee as e 
@@ -88,4 +89,26 @@ SELECT * FROM project;
         SELECT e.id, e.emailID, e.Phone_No , e.City, c.cfirst_name, c.id, c.clast_name ,c.City from employee as e INNER JOIN client as c ON e.id = c.emp_ID 
         WHERE e.City = "Bangalore" AND c.City = "Hyderabad"; 
 
+    --2)Left Join : 
+        -- a) Fetch out each project allocated to each employee:
+        SELECT e.id, e.fname, p.project_id, p.name from employee as e LEFT JOIN project as p ON e.id = p.empID; 
+
+    -- 3) Right Join:
+        -- a) List out all the projects along with the employee's name and their respective allocated emailID :  
+        SELECT p.project_id, p.name, e.fname, e.id, e.emailID From employee as e 
+        RIGHT JOIN project as p ON e.id = p.empID;  
+
+    -- THERE IS NO USE OF CROSS JOIN AS SUCH WHILE PERFORMING JOIN operations. 
+    -- 4)  CROSS Join : 
+        --a) List out all the combinations possible for the employee's name and project that can exist. 
+        SELECT e.fname, e.lname, e.id, p.name FROM employee as e CROSS JOIN project as p ;
+
+
+    --5) Join w/o using JOIN keyword:
+        -- Syntax: SELECT * from leftable , rightable  Where leftable.id = rightable.id;
+
+        SELECT e.id , e.fname , e.lname , p.project_id, p.name from employee as e, 
+        project as p WHERE e.id = p.empID;
+
         
+ 
