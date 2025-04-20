@@ -28,7 +28,7 @@
 
         Joins: 
             --> Combines multiples tables based on the matching condition. 
-            --> Column wise combination 
+            --> Column wise combination. 
             --> Data types of two tables can be different 
             --> CAN GENERATE BOTH DISTINCT OR DUPLICATE ROWS
             --> The number of column(s) selected may or may not be same from each table 
@@ -46,3 +46,5 @@
         --> Alternate to JOINS
         --> Outer Query Depends on inner query. 
         --> It is used with FROM, WHERE, SELECT Clause. 
+
+
