@@ -1,7 +1,7 @@
 CREATE DATABASE emp; 
 USE emp; 
 
--- creating the employee table : 
+-- A) creating the employee table : 
 CREATE TABLE employee (
     id INT PRIMARY KEY NOT NULL,
     fname VARCHAR(225),
@@ -21,7 +21,7 @@ INSERT INTO employee (id, fname, lname, emailID, Phone_No, City) VALUES
 
 SELECT * FROM employee; 
 
--- creating table clinet :   
+-- B) creating table clinet :   
 CREATE TABLE client (
     id INT PRIMARY KEY NOT NULL, 
     cfirst_name VARCHAR(225),
@@ -42,7 +42,7 @@ INSERT INTO client (id, cfirst_name, clast_name, client_emailID, client_Phone_No
 
 SELECT * FROM client; 
 
---creating the project table : 
+-- C) creating the project table : 
 CREATE TABLE project(
     project_id INT PRIMARY KEY NOT NULL, 
     name VARCHAR(100),
@@ -64,7 +64,7 @@ INSERT INTO project (project_id, name, startdate, empID, clientID) VALUES
 SELECT * FROM project;  
 
 
--- Performing the JOINS on the above three tables: 
+-- D) Performing the JOINS on the above three tables: 
 
     --1) INNER JOIN : 
         --a)Enlist all the employees ID , names along with the project allocated to them. 
@@ -109,6 +109,76 @@ SELECT * FROM project;
 
         SELECT e.id , e.fname , e.lname , p.project_id, p.name from employee as e, 
         project as p WHERE e.id = p.empID;
+    
+
+-- E) ADDING A COLUMN USING THE ALTER QUERY with "ADD": 
+ALTER TABLE employee ADD age INT; 
+
+-- F) Inserting the age in the empolyee table using UPDATE CLAUSE: 
+UPDATE employee 
+        SET age = CASE id 
+
+        -- Think of CASE like : 
+            -- if id == 1 then age = 28
+            -- else if id == 2 then age = 25
+            -- ...
+
+                WHEN 1 THEN 28
+                WHEN 2 THEN 25
+                WHEN 3 THEN 30 
+                WHEN 4 THEN 27 
+                WHEN 5 THEN 29 
+        END
+        WHERE id IN (1,2,3,4,5); -- The CASE will return NULL for any id not listed. Without "WHERE", any unmatched employee’s age could accidentally be set to NULL.
+
+
+-- F) Performing SUB-QUERIES: 
+
+    -- 1)Single Value Sub Queries -->
+
+        -- a) Emp where age is > 29 USING WHERE CLAUSE:
+        SELECT * FROM employee where age in (
+            SELECT age from employee where age > 29); -- firstly the inner query will execute than the outer query --> The outer query depends upon the inner query . 
+
+        -- b) Select max age person whoes fname contains "a" USING FROM CLAUSE:
+        SELECT max(age) from (
+            SELECT * FROM employee WHERE fname like "%a"
+            ) AS temp; -- When we use FROM, we always provide a table name. If it's a subquery instead of a real table, SQL still expects a name—so we must give it an alias using AS, or it throws error : "Every derived table must have its own alias."
+
+
+    -- 2) Emp working on more than one project: 
+    SELECT * from employee where id in (
+        SELECT empID from project GROUP BY empID HAVING count (empID)>1
+    );
+
+    -- 3) Coorelate Sub-Query:
+        -- Find the 3rd oldest employee: 
+    SELECT * FROM employee el -- el as the alias for employee
+        WHERE 3 = ( -- "3": For every employee in the outer table (alias el), count how many employees (e2) have an age greater than or equal to their age.
+            SELECT COUNT (e2.age)
+            FROM employee e2 
+            WHERE e2.age >= e1.age
+        );
+
+    
+--G) View: 
+    -- a) VIEW: 
+        SELECT * From employee; 
+
+    -- b) Create A View: 
+        CREATE VIEW custom_view AS SELECT fname, emailID from employee; 
+    
+    -- c) Viewing from view : 
+        SELECT  * FROM custom_view; 
+    
+    -- d) Altering A View created :  
+        ALTER VIEW custom_view As SELECT fname, lname, emailID from employee; 
+
+    -- DROP A VIEW :
+        DROP VIEW If exists custom_view; 
+
+
+    
 
         
  
