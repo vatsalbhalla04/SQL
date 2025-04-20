@@ -23,3 +23,26 @@
             UPDATE → When modifying existing records.
 
             REPLACE → When you want to insert or overwrite depending on existence, but are okay with possible data loss in unspecified fields.
+
+3) Joins vs Set Operations:  
+
+        Joins: 
+            --> Combines multiples tables based on the matching condition. 
+            --> Column wise combination 
+            --> Data types of two tables can be different 
+            --> CAN GENERATE BOTH DISTINCT OR DUPLICATE ROWS
+            --> The number of column(s) selected may or may not be same from each table 
+            --> Combines results horizontally . 
+
+        Set: 
+            --> Combination is resultinh set from two or more SELECT statements. 
+            --> Row wise combination 
+            --> Datatypes of corresponding columns from each table should be the same. 
+            --> GENRATE DISTINCT ROWS. 
+            --> The number of column(s) selected must be same from each table 
+            --> Combines results vertically . 
+
+4) SUB QURIES: 
+        --> Alternate to JOINS
+        --> Outer Query Depends on inner query. 
+        --> It is used with FROM, WHERE, SELECT Clause. 
