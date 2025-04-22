@@ -28,8 +28,10 @@
     CREATE TABLE order_details (
         Order_id INT PRIMARY KEY, 
         delivery_date DATE, 
-        cust_id INT,
+        cust_id INT, -- FK
         FOREIGN KEY (cust_id) REFERENCES customers(id) ON DELETE SET NULL
+
+        --cust_id in the order_details table is the foreign key that "points" to the id in the customers table. It establishes a relationship between the two tables. 
 
         -- ON DELETE CASCADE : is a foreign key constraint behavior in SQL that automatically deletes child table rows when the referenced row in the parent table is deleted.
 
@@ -45,7 +47,7 @@
     -- Show existing tables
     SHOW TABLES;
 
-    -- Create account table with UNIQUE and CHECK constraints
+    -- Create account table with UNIQUE and adding a constraints along while creating the table/
     CREATE TABLE account (
         id INT PRIMARY KEY, 
         username VARCHAR(25) UNIQUE NOT NULL,
@@ -63,6 +65,7 @@
 
     -- Drop and recreate account table with DEFAULT constraint
     DROP TABLE account;
+
     CREATE TABLE account (
         id INT PRIMARY KEY, 
         username VARCHAR(255) UNIQUE,
@@ -73,7 +76,9 @@
         INSERT INTO account (id, username) VALUES
         (2, 'B');
 
-    -- ALTER operations
+    -- ALTER operations : when you use the ALTER query, it is always applied to an existing table. The purpose of the ALTER statement is to modify the structure of a table after it has been created. You can't use ALTER to create a new table; it's only for making changes to an already existing table, such as adding or dropping columns, changing column data types, adding constraints (like foreign keys), and so on.
+
+    -- Commands associated with ALTER ARE ADD, MODIFY, DROP, RENAME, CHANGE
         ALTER TABLE account ADD interest FLOAT NOT NULL DEFAULT 0;
 
         ALTER TABLE account MODIFY interest DOUBLE NOT NULL DEFAULT 0;
@@ -91,7 +96,9 @@
 
         -- Check updated structure
         DESC account_details;
+
         SELECT * FROM account_details;
+        
         SHOW TABLES;
 
         -- DML operations : INSERT , DELETE UPDATE , REPLACE , ON DELETE CASCADE , ON DELETE NULL
@@ -127,7 +134,7 @@
         -- This query will insert a record with NULL values for all unspecified fields.
         REPLACE INTO customers (id) VALUES (2);
 
-        -- Using SELECT with the REPLACE statement to replace a record, setting unspecified fields to NULL:
+        -- Using SELECT with the REPLACE statement to replace a record, setting unspecified fields to "NULL" : 
         REPLACE INTO customers (id,cname,city)
                  SELECT id,cname,city
                  FROM customers WHERE id = 3;
