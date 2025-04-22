@@ -78,11 +78,9 @@ SELECT * FROM project;
         INNER JOIN project as p ON e.id = p.project_id; 
 
 
-        SELECT DISTINCT City FROM employee;
-        -- emp are working in Ahmedabad, Mumbai, Delhi, Bangalore, Pune
+        SELECT DISTINCT City FROM employee;  -- emp are working in Ahmedabad, Mumbai, Delhi, Bangalore, Pune
 
-        SELECT DISTINCT City FROM client;
-        --clinets location: Delhi, Mumbai, Chennai, Hyderabad, Pune
+        SELECT DISTINCT City FROM client;  --clinets location: Delhi, Mumbai, Chennai, Hyderabad, Pune
 
 
         --c) Fetch out all the employee ID's and their contact detail who have been working from Bangalore with clients name and location from  Hyderabad 
@@ -111,12 +109,11 @@ SELECT * FROM project;
         project as p WHERE e.id = p.empID;
     
 
--- E) ADDING A COLUMN USING THE ALTER QUERY with "ADD": 
-ALTER TABLE employee ADD age INT; 
+    -- E) ADDING A COLUMN USING THE ALTER QUERY with "ADD": 
+    ALTER TABLE employee ADD age INT; 
 
--- F) Inserting the age in the empolyee table using UPDATE CLAUSE: 
-UPDATE employee 
-        SET age = CASE id 
+    -- F) Inserting the age in the empolyee table using UPDATE CLAUSE: 
+    UPDATE employee  SET age = CASE id 
 
         -- Think of CASE like : 
             -- if id == 1 then age = 28
