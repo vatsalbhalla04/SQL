@@ -70,23 +70,23 @@
         --> Outer Query Depends on inner query. 
         --> It is used with FROM, WHERE, SELECT Clause. 
 
-6) SQL Pattern Matching: 
-
-    LIKE operator for simple pattern matching using:
-
-    '%' → matches zero or more characters
-
-    '_' → matches exactly one character
-
-    '%a' → matches any string that ends with 'a'
-
-    '%' → wildcard for any number of characters before
-
-    Pattern || Meaning
-    'a%'    || Starts with 'a'
-    '%a'    || Ends with 'a'
-    '%a%'   || Contains 'a'
-    'a'	    || Exactly equal to 'a'
-    '____'  || Any 4-letter word
-    '%aa%'  || Contains "aa"
+6) SQL Pattern Matching:
+   
+        LIKE operator for simple pattern matching using:
+    
+        '%' → matches zero or more characters
+    
+        '_' → matches exactly one character
+    
+        '%a' → matches any string that ends with 'a'
+    
+        '%' → wildcard for any number of characters before
+    
+        Pattern || Meaning
+        'a%'    || Starts with 'a'
+        '%a'    || Ends with 'a'
+        '%a%'   || Contains 'a'
+        'a'	    || Exactly equal to 'a'
+        '____'  || Any 4-letter word
+        '%aa%'  || Contains "aa"
 
